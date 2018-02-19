@@ -1,0 +1,18 @@
+１．configファイルに[user]情報を追記すればOK。
+
+＊configファイルの置き場所： 「***/プロジェクトフォルダ/.git」フォルダの配下にある。
+
+[core]
+	symlinks = false
+	repositoryformatversion = 0
+	filemode = false
+	logallrefupdates = true
+[remote "origin"]
+	url = https://seungoon@bitbucket.org/seungoon/globaltoolbox.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+[user]
+	name = seungoon
+	mail = seungoon@gmail.com
