@@ -1,0 +1,40 @@
+
+winmergeでdiffを取る
+
+コミット前に確認する
+configのaliasに追加する
+diffwin = difftool -y -d -t WinMerge
+ 
+自身の変更をコミットする前にcontractをマージする（contractからマージする際に誤りを減らすため）
+ 
+「git clean」コマンドで一度もコミットしていないファイルを削除します。
+※こので削除されたファイルは復旧ができません。注意して実行してください。
+
+削除対象となるファイルを確認します。
+git clean -n
+対話形式で削除対象のファイルを削除します。
+git clean -i
+強制的にファイルを削除します。
+git clean -f
+ 
+コミットせずに別のブランチをチェックアウトしたい場合
+
+コミットしていない変更内容を退避します。
+git stash
+
+退避した変更内容を確認します。
+git stash list
+
+退避した内容を反映させて、反映されたスタッシュを削除します。
+git stash pop stash@{0}(スタッシュ名)
+
+退避した内容を反映させます。(スタッシュは削除しない。)
+git stash apply stash@{0}(スタッシュ名)
+
+退避した内容を削除します。
+git stash drop stash@{0}(スタッシュ名)
+ 
+コミットしないでマージと編集内容確認¶
+
+git merge ブランチ名 --no-commit
+git diffwin --cached
