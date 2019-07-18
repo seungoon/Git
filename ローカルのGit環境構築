@@ -1,0 +1,66 @@
+※下記のサイトを参考にして、ローカルにGit環境を作成する。
+　https://programming-style.com/blog/gitbucket-install-win/
+ 
+■ダウンロード
+https://github.com/gitbucket/gitbucket/releases
+ 
+■本ページで利用するチートシート
+# GitBucket起動コマンド
+java -jar gitbucket.war
+
+# GitBucket単体起動URL
+http://localhost:8080
+
+# Tomcat単体起動URL
+http://localhost:8080/gitbucket/
+
+# Apache設定ファイル（httpd.conf）の修正内容
+LoadModule proxy_module modules/mod_proxy.so
+LoadModule proxy_ajp_module modules/mod_proxy_ajp.so
+
+<IfModule proxy_module>
+  <IfModule proxy_ajp_module>
+    AllowEncodedSlashes NoDecode
+    ProxyPreserveHost On
+    ProxyPass /gitbucket ajp://localhost:8009/gitbucket
+    ProxyPassReverse /gitbucket ajp://localhost:8009/gitbucket
+  </IfModule>
+</IfModule>
+
+# Tomcat設定ファイル（server.xml）の修正内容
+<!--
+<Connector port="8080" protocol="HTTP/1.1"
+           connectionTimeout="20000"
+           redirectPort="8443" />
+-->
+
+# Apache + Tomcat連携起動URL
+http://localhost/gitbucket/
+
+# PostgreSQLのログインコマンド
+psql -U ユーザ名
+C:\etc\pgsql\bin\psql -U postgres
+
+# GitBucket用のロール作成コマンド
+create role gitbucket with login password 'gitbucket';
+
+# PostgreSQLロール一覧確認コマンド
+\du
+
+# GitBucket用のデータベース作成コマンド
+create database gitbucket encoding 'UTF-8';
+
+# GitBucketデータベース設定ファイル（database.conf）の修正内容
+db {
+  url      = "jdbc:postgresql://localhost:5432/gitbucket"
+  user     = "gitbucket"
+  password = "gitbucket"
+#  connectionTimeout = 30000
+#  idleTimeout = 600000
+#  maxLifetime = 1800000
+#  minimumIdle = 10
+#  maximumPoolSize = 10
+}
+
+# GitBucket System Settings画面URL
+http://localhost/gitbucket/admin/system
