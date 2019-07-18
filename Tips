@@ -38,3 +38,24 @@ git stash drop stash@{0}(スタッシュ名)
 
 git merge ブランチ名 --no-commit
 git diffwin --cached
+
+
+■使用例：
+
+１．ローカルgitBranch最新化： git fetch																						
+										                  git merge origin/gitBranchCReq1																			
+																													
+２．リモートbranch確認：      git branch -a																			
+																													
+３．マージ：										       git merge remotes/origin/ブランチ名 --no-commit																			
+																													
+４．差分確認：										     git diffwin --cached																			
+																											
+５．動作確認：										     Eclipseのリフレッシュ、ビルドを実施																			
+																																																							
+６．コミット：										     git commit -m "コメント"																			
+																													
+７．プッシュ：										     git push																			
+																													
+ ※差分確認、動作確認で問題が発生した場合は、下記のコマンドで元に戻し、差し戻し。																													
+   git reset --hard HEAD																													
